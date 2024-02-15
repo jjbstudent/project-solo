@@ -34,7 +34,7 @@ signupBtn.addEventListener('click', function() {
         localStorage.setItem('userEmail', userEmail);
         localStorage.setItem('userPassword', userPassword);
 
-        // You can add any other logic or redirect the user as needed
+        // messgage in console log 
         console.log('Sign-up data has been stored in local storage.');
     } else {
         // If local storage is not supported, return error message
