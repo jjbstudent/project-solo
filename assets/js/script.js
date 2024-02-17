@@ -33,23 +33,34 @@ signupBtn.addEventListener('click', function() {
 
 // Check if all fields are filled out
 if (userName && userEmail && userPassword) {
-    // Added so i can check if local storage is supported by the browser
+    // Added so I can check if local storage is supported by the browser
     if (typeof(Storage) !== "undefined") {
-        event.preventDefault()
-        // Store the values in local storage for sign-up
-        localStorage.setItem('userName', userName);
-        localStorage.setItem('userEmail', userEmail);
-        localStorage.setItem('userPassword', userPassword);
+        event.preventDefault();
 
-        // messgage in console log 
+        // Get existing user data from local storage or initialize an empty array
+        const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Create a new user object
+        const newUser = {
+            userName: userName,
+            userEmail: userEmail,
+            userPassword: userPassword
+        };
+
+        // Add the new user to the existing users array
+        existingUsers.push(newUser);
+
+        // Store the updated array back in local storage
+        localStorage.setItem('users', JSON.stringify(existingUsers));
+
+        // Message in console log 
         console.log('Sign-up data has been stored in local storage.');
-        msg.style.display = "block"; 
-
+        msg.style.display = "block";  
     } else {
         // If local storage is not supported, return error message
         console.log('Local storage is not supported by your browser.');
     }
-    } else {
+} else {
     // Display an error message or take appropriate action if any field is empty
     console.log('Please fill out all fields.');
 }
