@@ -9,16 +9,8 @@ const msg = document.getElementById('success-msg'); // added to hide my message 
 msg.style.display = "none"; 
 
 
-//when the signin button i pressed it will change elements and validate user input
-signinBtn.addEventListener('click', function() {  
-    nameField.style.maxHeight = "0";
-    title.innerHTML = 'Sign In';
-    signupBtn.classList.add('disable');
-    signinBtn.classList.remove('disable');
-});
-
 // sign up button will change elements and store user input 
-signupBtn.addEventListener('click', function() {  
+signupBtn.addEventListener('click', function(event) {
     nameField.style.maxHeight = "60px";
     title.innerHTML = 'Sign Up';
     signupBtn.classList.remove('disable');
@@ -55,7 +47,11 @@ if (userName && userEmail && userPassword) {
 
         // Message in console log 
         console.log('Sign-up data has been stored in local storage.');
-        msg.style.display = "block";  
+        msg.style.display = "block";
+        //clear input fields
+        document.getElementById('userName').value = '';
+        document.getElementById('userEmail').value = '';
+        document.getElementById('userPassword').value = '';  
     } else {
         // If local storage is not supported, return error message
         console.log('Local storage is not supported by your browser.');
@@ -66,22 +62,36 @@ if (userName && userEmail && userPassword) {
 }
 });
 
-
-
-
 // sign in button 
-signinBtn.addEventListener('click', function() {
+//when the signin button is pressed it will change elements and validate user input
+signinBtn.addEventListener('click', function(event) {
+    nameField.style.maxHeight = "0";
+    title.innerHTML = 'Sign In';
+    signupBtn.classList.add('disable');
+    signinBtn.classList.remove('disable');
     msg.style.display = "none";  
-})
 
+    // Get the values from the input fields
+    const signInEmail = document.getElementById('userEmail').value;
+    const signInPassword = document.getElementById('userPassword').value;
 
-// var username = "jermaine";
-// var email = "j.bandoo@gmail.com"; 
-// var password = "123456";
+    // Validate email and password
+    if (signInEmail && signInPassword) {
+        event.preventDefault();
+        // You can add your authentication logic here, such as checking against stored user data
+        const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+        const user = existingUsers.find(u => u.userEmail === signInEmail && u.userPassword === signInPassword);
 
-// if (username && password) { 
-//   console.log("Sign in successful");
-// } else {
-//   console.log("Try again");  
-// }
+        if (user) {
+            console.log('Sign-in successful');
+            // Perform actions for successful sign-in, such as redirecting to a new page
+        } else {
+            console.log('Invalid email or password. Please try again.');
+            // Display an error message or take appropriate action for invalid credentials
+        }
+    } else {
+        console.log('Please enter both email and password.');
+        // Display an error message or take appropriate action if email or password is empty
+    }
+});
 
