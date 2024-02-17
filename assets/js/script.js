@@ -1,13 +1,15 @@
 console.log('test')
-
+// declare variables from HTML
 let signupBtn = document.getElementById('signupBtn');
 let signinBtn = document.getElementById('signinBtn');
 let nameField = document.getElementById('nameField');
 let title = document.getElementById('title');
 
+const msg = document.getElementById('success-msg'); // added to hide my message Div
+msg.style.display = "none"; 
 
 
-//when the signin botton i pressed it will change elements and validate user input
+//when the signin button i pressed it will change elements and validate user input
 signinBtn.addEventListener('click', function() {  
     nameField.style.maxHeight = "0";
     title.innerHTML = 'Sign In';
@@ -26,9 +28,14 @@ signupBtn.addEventListener('click', function() {
     const userName = document.getElementById('userName').value;
     const userEmail = document.getElementById('userEmail').value;
     const userPassword = document.getElementById('userPassword').value;
+    const msg = document.getElementById('success-msg');
+    msg.style.display = "none";  // Display sucess login message 
 
+// Check if all fields are filled out
+if (userName && userEmail && userPassword) {
     // Added so i can check if local storage is supported by the browser
     if (typeof(Storage) !== "undefined") {
+        event.preventDefault()
         // Store the values in local storage for sign-up
         localStorage.setItem('userName', userName);
         localStorage.setItem('userEmail', userEmail);
@@ -36,12 +43,25 @@ signupBtn.addEventListener('click', function() {
 
         // messgage in console log 
         console.log('Sign-up data has been stored in local storage.');
+        msg.style.display = "block"; 
+
     } else {
         // If local storage is not supported, return error message
         console.log('Local storage is not supported by your browser.');
     }
+    } else {
+    // Display an error message or take appropriate action if any field is empty
+    console.log('Please fill out all fields.');
+}
 });
 
+
+
+
+// sign in button 
+signinBtn.addEventListener('click', function() {
+    msg.style.display = "none";  
+})
 
 
 // var username = "jermaine";
