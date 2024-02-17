@@ -84,7 +84,8 @@ signinBtn.addEventListener('click', function(event) {
 
         if (user) {
             console.log('Sign-in successful');
-            // Perform actions for successful sign-in, such as redirecting to a new page
+            // Redirect to a new HTML page after successful sign-in
+            window.location.href = 'main.html';
         } else {
             console.log('Invalid email or password. Please try again.');
             // Display an error message or take appropriate action for invalid credentials
