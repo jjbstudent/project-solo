@@ -1,4 +1,3 @@
-console.log('test')
 // declare variables from HTML
 let signupBtn = document.getElementById('signupBtn');
 let signinBtn = document.getElementById('signinBtn');
