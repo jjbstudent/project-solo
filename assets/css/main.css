@@ -1,3 +1,8 @@
+:root{
+    --primary-color: rgb(65, 65, 92);
+    --secondary--color: rgb(84, 96, 151);
+}
+
 body {
     /* Set background image */
     background-image: linear-gradient(rgba(54, 27, 211, 0.6),rgba(223, 29, 29, 0.6)), url(../images/back1.jpg);
@@ -21,7 +26,8 @@ body {
 
  /* Styles for the transparent header */
  header {
-    position: fixed;
+    position: relative;
+    margin-bottom: 20px;
     top: 0;
     left: 0;
     width: 100%;
@@ -35,18 +41,15 @@ body {
 nav {
     text-align: center;
 }
-
 nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-
 nav li {
     display: inline-block;
     margin-right: 100px;
 }
-
 nav a {
     text-decoration: none;
     color: #fff;
@@ -54,7 +57,7 @@ nav a {
     font-size: 20px;
     font-family:monospace;
 }
-
+/* Styles for footer */
 footer {
     background-color: #202020;
     color: #fff;
@@ -66,14 +69,49 @@ footer {
     font-family:monospace;
     font-size: 20px;
 }
-
-/* Styles for footer links */
 footer a {
     color: #fff;
     text-decoration: none;
     margin: 0 15px;
-    
 }
 footer i {
     font-size: 3rem;
 }
+/*Styling for the Search */
+.search{
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    color:white;
+    font-family: inherit;
+}
+.search:focus{    outline: 0;
+    background-color: var(--primary-color);
+}
+.search :placeholder{
+    color: #fff;
+}
+
+/*Movie Card styling and display*/
+main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.movie-card{
+    width: 300px;
+    margin: 1rem;
+    border-radius: 3px;
+    box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 0.8);
+    background-color: var(--secondary--color);
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+
+
