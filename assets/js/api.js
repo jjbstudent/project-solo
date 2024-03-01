@@ -1,13 +1,17 @@
 // The Movie Database (TMDb) API key
-const apiKey = '1cb8e391f5f9c28f849e9c93f9388447';
+const apiKey = '?api_key=1cb8e391f5f9c28f849e9c93f9388447';
 
-// fetching popular movies from TMDb
-const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+// various API URLS
+const popular = `https://api.themoviedb.org/3/movie/popular${apiKey}`;
+const nowPlaying = `https://api.themoviedb.org/3/movie/now_playing${apiKey}`;
+const topRated = `https://api.themoviedb.org/3/movie/top_rated${apiKey}`;
+const upComing = `https://api.themoviedb.org/3/movie/upcoming${apiKey}`;
+
 
 // Fetch data from TMDb
-fetch(apiUrl)
+fetch(popular)
     .then(response => {
-        // Check if the request was successful (status code 200)
+        // Check if the request was successful
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
